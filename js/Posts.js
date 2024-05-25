@@ -1,5 +1,5 @@
 const ArrayStorage = require('./ArrayStorage')
-const FakeMessage = require('./FakeMessage')
+const FakePost = require('./FakePost')
 
 class Posts extends ArrayStorage {
   #timer = null
@@ -13,17 +13,17 @@ class Posts extends ArrayStorage {
   #init() {
     this.#timer && clearInterval(this.#timer)
 
-    this.#generateMessage()
-    this.#timer = setInterval(this.#generateMessage, 5000)
+    this.#generatePost()
+    this.#timer = setInterval(this.#generatePost, 5000)
   }
 
-  #generateMessage = () => {
+  #generatePost = () => {
     this.length > 10 && this.clear()
-    this.#addMessage()
+    this.#addPost()
   }
 
-  #addMessage() {
-    this.push(new FakeMessage())
+  #addPost() {
+    this.push(new FakePost())
   }
 }
 

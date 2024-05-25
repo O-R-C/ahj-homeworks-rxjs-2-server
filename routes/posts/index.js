@@ -1,8 +1,8 @@
 const Router = require('@koa/router')
 const router = new Router()
-const messages = require('../../../db/messages')
+const posts = require('../../../db/posts')
 
-router.get('/messages/unread', async (ctx) => {
+router.get('/posts/latest', async (ctx) => {
   ctx.status = 200
 
   ctx.type = 'application/json'
@@ -10,7 +10,7 @@ router.get('/messages/unread', async (ctx) => {
   ctx.body = JSON.stringify({
     status: 'ok',
     timestamp: Date.now(),
-    messages: JSON.stringify(messages.get()),
+    messages: JSON.stringify(posts.get().splice(-10)),
   })
 })
 
