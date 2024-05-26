@@ -1,7 +1,7 @@
 const combine = require('koa-combine-routers')
 
 const index = require('./index/index')
-const unread = require('./messages/unread')
+const posts = require('./posts/index')
 
-const router = combine([index, unread])
+const router = combine([index, posts])
 module.exports = router

@@ -8,7 +8,7 @@ class FakeBase {
     this.id = uuidv4()
     this.author_id = uuidv4()
     this.author = this.#createFullName()
-    this.title = this.faker.lorem.sentence()
+    this.title = faker.lorem.sentence()
     this.avatar = faker.image.avatar()
     this.created = Date.now()
   }

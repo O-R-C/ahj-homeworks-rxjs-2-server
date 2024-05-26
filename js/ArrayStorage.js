@@ -73,6 +73,15 @@ class ArrayStorage {
   clear() {
     this.#storage = []
   }
+
+  /**
+   * Returns the latest 10 items from the storage array.
+   *
+   * @return {Array} An array containing the latest 10 items from the storage array.
+   */
+  get latest() {
+    return this.#storage.slice(-10)
+  }
 }
 
 module.exports = ArrayStorage

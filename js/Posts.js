@@ -1,8 +1,10 @@
 const ArrayStorage = require('./ArrayStorage')
 const FakePost = require('./FakePost')
+const FakeComment = require('./FakeComment')
 
 class Posts extends ArrayStorage {
   #timer = null
+  #comments = []
 
   constructor() {
     super()
@@ -18,12 +20,46 @@ class Posts extends ArrayStorage {
   }
 
   #generatePost = () => {
-    this.length > 10 && this.clear()
+    this.length > 15 && this.clear()
     this.#addPost()
   }
 
   #addPost() {
-    this.push(new FakePost())
+    const post = new FakePost()
+    this.push(post)
+
+    this.#addComments(post.id)
+  }
+
+  #addComments(id) {
+    const item = {
+      id,
+      comments: [],
+    }
+
+    const commentsCount = this.#getRandom()
+    for (let i = 0; i < commentsCount; i++) {
+      const comment = new FakeComment()
+      item.comments.push(comment)
+    }
+
+    this.#comments.push(item)
+  }
+
+  #getRandom() {
+    return Math.floor(Math.random() * 5)
+  }
+
+  clear() {
+    super.clear()
+    this.#comments = []
+  }
+
+  getLatestComments(id) {
+    return this.#comments
+      .filter((item) => item.id === id)
+      .map((item) => item.comments)
+      .slice(-3)
   }
 }
 
