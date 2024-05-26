@@ -39,7 +39,7 @@ class Posts extends ArrayStorage {
 
     const commentsCount = this.#getRandom()
     for (let i = 0; i < commentsCount; i++) {
-      const comment = new FakeComment()
+      const comment = new FakeComment(id)
       item.comments.push(comment)
     }
 
@@ -59,6 +59,7 @@ class Posts extends ArrayStorage {
     return this.#comments
       .filter((item) => item.id === id)
       .map((item) => item.comments)
+      .flat()
       .slice(-3)
   }
 }

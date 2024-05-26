@@ -9,7 +9,7 @@ class FakeBase {
     this.author_id = uuidv4()
     this.author = this.#createFullName()
     this.title = faker.lorem.sentence()
-    this.avatar = faker.image.avatar()
+    this.avatar = faker.image.urlLoremFlickr({ category: 'people' })
     this.created = Date.now()
   }
 
